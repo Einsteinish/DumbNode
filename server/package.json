@@ -1,12 +1,12 @@
 {
-  "name": "starhackit-api",
-  "description": "The starhackit backend",
+  "name": "dumbnode-api",
+  "description": "The dumbnode backend",
   "version": "0.0.1",
   "private": false,
   "main": "build/index.js",
   "repository": {
     "type": "git",
-    "url": "git@github.com:FredericHeem/starhackit.git"
+    "url": "git@github.com:Einsteinish/dumbnode.git"
   },
   "license": "NLPL",
   "scripts": {

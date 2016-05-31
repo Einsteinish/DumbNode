@@ -41,7 +41,7 @@ The global configuration which is independent on the phase is at [group_vars/all
 
 ```
 app_name: starthackit
-git_repo: https://github.com/FredericHeem/starhackit.git
+git_repo: https://github.com/FredericHeem/dumbnode.git
 git_version: master
 api_dir: '{{home}}/{{app_name}}'
 mail_signature: "The StarHackIt Team"
@@ -57,7 +57,7 @@ node_env: production
 website_url: "http://starhack.it"
 mail_service: Mailgun
 mail_from: "StarHackIt <notification@starhack.it>"
-mail_user: postmaster@starhackit.mailgun.org
+mail_user: postmaster@dumbnode.mailgun.org
 mail_password: 1b901d8d9a2806754225ad177fe93a10
 facebook_client_id: 1643377549276547
 facebook_client_secret: 1da6597bec02ca41f3950641c6e965a2

@@ -1,7 +1,7 @@
 StarHackIt is a ES6/ES7 React/Node starter kit
 ==============================================
 
-[![Join the chat at https://gitter.im/FredericHeem/starhackit](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/FredericHeem/starhackit?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Join the chat at https://gitter.im/FredericHeem/dumbnode](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/FredericHeem/dumbnode?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 Fullstack web application starter kit written in es6/es7 with react and node.js with the following features:
 
@@ -42,10 +42,10 @@ For more information about the backend, see its [README](server/README.md)
 * [Nightwatch](http://nightwatchjs.org/): End-to-End tests in Node.js quickly and effortlessly that run against a Selenium server
 * [Sinon](http://sinonjs.org/): test spies, stubs and mocks.
 * [Eslint](http://eslint.org/): The pluggable linting utility for JavaScript and JSX.
-* [Travis](https://travis-ci.org/): Test and deploy. [![Build Status](https://travis-ci.org/FredericHeem/starhackit.svg?branch=master)](https://travis-ci.org/FredericHeem/starhackit)
-* [CodeClimate](https://codeclimate.com): Automated code review [![Code Climate](https://codeclimate.com/github/FredericHeem/starhackit/badges/gpa.svg)](https://codeclimate.com/github/FredericHeem/starhackit)
-[![Test Coverage](https://codeclimate.com/github/FredericHeem/starhackit/badges/coverage.svg)](https://codeclimate.com/github/FredericHeem/starhackit/coverage)
-* [Coveralls](https://coveralls.io): [![Coverage Status](https://coveralls.io/repos/FredericHeem/starhackit/badge.svg?branch=master)](https://coveralls.io/r/FredericHeem/starhackit?branch=master)
+* [Travis](https://travis-ci.org/): Test and deploy. [![Build Status](https://travis-ci.org/FredericHeem/dumbnode.svg?branch=master)](https://travis-ci.org/FredericHeem/dumbnode)
+* [CodeClimate](https://codeclimate.com): Automated code review [![Code Climate](https://codeclimate.com/github/FredericHeem/dumbnode/badges/gpa.svg)](https://codeclimate.com/github/FredericHeem/dumbnode)
+[![Test Coverage](https://codeclimate.com/github/FredericHeem/dumbnode/badges/coverage.svg)](https://codeclimate.com/github/FredericHeem/dumbnode/coverage)
+* [Coveralls](https://coveralls.io): [![Coverage Status](https://coveralls.io/repos/FredericHeem/dumbnode/badge.svg?branch=master)](https://coveralls.io/r/FredericHeem/dumbnode?branch=master)
 * [DevLab](https://github.com/TechnologyAdvice/DevLab): Containerize your development workflow.
 * [Trevor](https://github.com/vdemedes/trevor): Your own Travis CI to run tests locally.
 
@@ -55,24 +55,24 @@ For more information about the backend, see its [README](server/README.md)
 
 To get the latest code, grab it by cloning the repository from GitHub:
 
-    $ git clone https://github.com/FredericHeem/starhackit.git yourproject
+    $ git clone https://github.com/FredericHeem/dumbnode.git yourproject
     $ cd yourproject
 
 ## Yeoman generator
 
-Another way to bootstrap your application is to use the [Starhackit Yeoman generator](https://github.com/FredericHeem/generator-starhackit).
+Another way to bootstrap your application is to use the [Starhackit Yeoman generator](https://github.com/FredericHeem/generator-dumbnode).
 
-First install *yo* and *generator-starhackit* globally:
+First install *yo* and *generator-dumbnode* globally:
 
 ```bash
-npm install -g yo generator-starhackit
+npm install -g yo generator-dumbnode
 ```
 
 Finally, initiate the generator and answer the questions about your project:
 
 ```bash
 mkdir yourproject && cd $_
-yo starhackit
+yo dumbnode
 ```
 
 ## Deployment

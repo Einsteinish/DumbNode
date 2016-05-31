@@ -1,5 +1,5 @@
 {
-  "name": "starhackit",
+  "name": "DumbNode",
   "description": "react + node fullstack starter kit with authentication and authorization, data backed by SQL",
   "version": "2.1.0",
   "private": false,
@@ -12,6 +12,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:FredericHeem/starhackit.git"
+    "url": "git@github.com:Einstinish/DumbNode.git"
   }
 }

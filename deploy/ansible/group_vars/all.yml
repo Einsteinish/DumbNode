@@ -1,6 +1,6 @@
 app_name: dumbnode
-title: ReactNode
-description: ReactNode is a fullstack boilerplate written in es6/es7
+title: DumbNode
+description: DumbNode is a fullstack boilerplate written in es6/es7
 
 git_repo: https://github.com/Einsteinish/DumbNode.git 
 git_version: master
@@ -8,7 +8,7 @@ git_version: master
 api_dir: '{{home}}/{{app_name}}'
 api_port: 9000
 
-mail_signature: "The React Node"
+mail_signature: "The DumbNode"
 
 db_name: dumbdb
 db_user: dumbdbuser
