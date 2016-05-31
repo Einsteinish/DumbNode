@@ -2,7 +2,7 @@
   "name": "dumbnode-ui",
   "version": "2.1.0",
   "description": "React/Redux starter kit",
-  "homepage": "https://github.com/FredericHeem/dumbnode",
+  "homepage": "https://github.com/Einsteinish/DumbNode.git",
   "license": "NLPL",
   "scripts": {
     "start": "webpack-dev-server --config webpack.dev.js",
@@ -21,10 +21,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:FredericHeem/dumbnode.git"
+    "url": "git@github.com:Einsteinish/DumbNode.git"
   },
   "bugs": {
-    "url": "https://github.com/FredericHeem/dumbnode/issues"
+    "url": "https://github.com/Einsteinish/DumeNode/issues"
   },
   "dependencies": {
     "axios": "0.11.1",
