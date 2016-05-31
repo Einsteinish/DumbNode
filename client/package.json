@@ -7,7 +7,7 @@
   "scripts": {
     "start": "webpack-dev-server --config webpack.dev.js",
     "prestart": "npm run lint",
-    "lint": "eslint src --ext .js",
+    "lint": "eslint src --ext .js --ext .jsx",
     "prebuild": "npm run lint",
     "build": "webpack --config webpack.prod.js --progress",
     "bundle-size": "webpack --config webpack.prod.js --json --progress | webpack-bundle-size-analyzer",
