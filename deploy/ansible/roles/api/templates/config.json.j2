@@ -1,0 +1,32 @@
+{
+  "websiteUrl": "{{website_url}}",
+  "liveReload":true,
+  "db":{
+    "driver": "pg",
+    "dialect":"postgres",
+    "database": "{{ db_name }}",
+    "user": "{{ db_user }}",
+    "password": "{{ db_password }}",
+    "host": "localhost",
+    "port": "5432",
+    "logging": true
+  },
+  "authentication":{
+    "facebook":{
+      "clientID": "{{facebook_client_id}}",
+      "clientSecret": "{{facebook_client_secret}}",
+      "callbackURL": "{{website_url}}/api/v1/auth/facebook/callback"
+    }
+  },
+  "mail": {
+    "from": "{{mail_from}}",
+    "signature": "{{mail_signature}}",
+    "smtp": {
+      "service": "{{mail_service}}",
+      "auth": {
+        "user": "{{mail_user}}",
+        "pass": "{{mail_password}}"
+      }
+    }
+  }
+}

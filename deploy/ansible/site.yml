@@ -1,0 +1,12 @@
+---
+- hosts: all
+  sudo: true
+  vars_files:
+    - 'vars/nginx-vars.yml'
+    - 'vars/postgres-vars.yml'
+  roles:
+   - nodesource.node
+   - mrlesmithjr.rabbitmq
+   - api
+   - nginx
+   - postgresql

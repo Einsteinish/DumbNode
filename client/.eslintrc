@@ -1,0 +1,74 @@
+{
+    "parser": "babel-eslint",
+    "plugins": [
+        "mocha",
+        "react",
+        "promise",
+        "flow-vars",
+        "jsx-extras"
+    ],
+    "extends": ["eslint:recommended", "plugin:react/recommended"],
+    "env": {
+        "browser": true,
+        "es6": true,
+        "node": false,
+        "jquery": true,
+        "mocha": true
+    },
+    "globals": {
+        "require": true
+    },
+    "ecmaFeatures": {
+        "arrowFunctions": true,
+        "blockBindings": true,
+        "classes": true,
+        "defaultParams": true,
+        "destructuring": true,
+        "forOf": true,
+        "generators": true,
+        "modules": true,
+        "spread": true,
+        "templateStrings": true,
+        "jsx": true
+    },
+    "rules": {
+        "no-console": 1,
+        "consistent-return": [0],
+        "key-spacing": [0],
+        "quotes": [0, "single", "avoid-escape"],
+        "quote-props": [1, "as-needed"],
+        "new-cap": [0],
+        "no-multi-spaces": [0],
+        "no-shadow": [0],
+        "no-unused-vars": [1],
+        "no-undef": 2,
+        "no-unused-expressions": 0,
+        "no-use-before-define": [2, "nofunc"],
+        "no-trailing-spaces": [2],
+        "eol-last": [0],
+        "no-labels": [2],
+        "indent": 0,
+        "no-mixed-spaces-and-tabs": 0,
+        "vars-on-top": 2,
+        "camelcase": [2, {"properties": "never"}],
+        "semi": [0, "always"],
+
+        "flow-vars/define-flow-type": 1,
+        "flow-vars/use-flow-type": 1,
+
+        "react/jsx-no-undef": 2,
+        "react/jsx-uses-react": 2,
+        "react/jsx-uses-vars": 2,
+        "react/no-did-mount-set-state": 1,
+        "react/no-did-update-set-state": 1,
+        "react/wrap-multilines": 1,
+        "react/react-in-jsx-scope": 1,
+        "react/no-unknown-property": 2,
+        "react/no-is-mounted": 0,
+        "jsx-extras/jsx-no-string-literals": 1,
+
+        "promise/param-names": 1,
+        "promise/always-return": 1,
+        "promise/catch-or-return": 1
+    }
+}

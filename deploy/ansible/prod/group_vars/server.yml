@@ -1,0 +1,17 @@
+
+env_name: production
+user: ubuntu
+home: /home/ubuntu
+node_env: production
+website_url: "http://dumbnode.com"
+http_port: 80
+db_name: "main"
+db_user: "postgres"
+db_password: ""
+mail_service: gmail
+mail_from: "DumbNode <contact.dumbnode@gmail.com>"
+mail_user: kihyuck.hong
+mail_password: password 
+facebook_client_id:
+facebook_client_secret:
+google_analytics:
