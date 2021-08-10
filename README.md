@@ -1,92 +1,73 @@
-StarHackIt is a ES6/ES7 React/Node starter kit
-==============================================
-aaa
-bbb
-ccc
-ddd
+Terraform for Syslog
+========
 
-[![Join the chat at https://gitter.im/FredericHeem/dumbnode](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/FredericHeem/dumbnode?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+The following two repos are used to deploy logstash using ECS fargate.
+The logstash server will get forwarded logs from Cortex Data Lake and uploads to S3 bucket.
 
-Fullstack web application starter kit written in es6/es7 with react and node.js with the following features:
+## Prerequisites:
 
-* Authentication: username/password, facebook, google authentication etc ...
-* Authorization: scheme using user, group and permission  
-* Scalable by using a micro services based architecture, a.k.a message queues
-* Relational database: postgres, mysql, sqlite, mssql etc, ...
-* Logging
+* Terraform should be installed on the local machine (version > 1.0).
+* Docker daemon should be running since we'll run docker file and upload it to ECR.
+* Proper AWS credentials  with time limit left (> 30min). 
+* S3 bucket to store terraform state should be created outside of terraform. For example "ta-terraform-states-377028479240"
+* Pre-existing VPC with private subnets.
+* Log group should be created outside of terraform because the terra does not have a permission to delete the log group.The name is “<app_name>-<container_name>”.
 
 
-## Frontend Technologies
+## How to use the templates
+There are three files: main.tf (root modudle), variables.tf and outputs.tf (specific outputs we need to see or use)
+To create any resources, we need to go into the folder and run terraform.
 
-* [React](https://facebook.github.io/react/): a facebook library to build user interfaces.
-* [Redux](http://redux.js.org/): predictable state container for JavaScript apps.
-* [Webpack](http://webpack.github.io/): module bundler for the browser
-* [Stylus](http://stylus-lang.com/): expressive, dynamic, robust CSS
-* [i18next](http://i18next.com/): internationalization
+### terraform-iam:
+This will create polocies,roles, and buckets for syslog upload and nlb access logs. Optionally, we can create a loggroup for the container via this terraform module.
+Those resources should be created before creating ECS logstash.
+* Change the S3 backend in main.tf (account name in the bucket name) and make sure the bucket should be create before any terraform runs.
 
-For more information about the frontend, see its [README](client/README.md)
+```
+terraform init
+```
+If it's the first time, this will ask if we want to use S3 as a remote state store. Select "yes".
 
-## Backend Technologies
-
-* [Koa](http://koajs.com/): next generation web framework for Node.js.
-* [Sequelize](http://docs.sequelizejs.com/en/latest/): Object Relationship Management (ORM) supporting majors relational SQL database.
-* [PostgreSQL](http://www.postgresql.org/): the world's most advanced open source relational database.
-* [RabbitMq](https://www.rabbitmq.com/): messaging system.
-* [Passport](http://passportjs.org/): authentication framework with more than 140 authentication strategies: username/password, facebook , google, github etc ...
-* [Winston](https://github.com/winstonjs/winston): a multi-transport async logging library.
-* [Nodemailer](https://github.com/andris9/Nodemailer): send email with various provider.
-
-For more information about the backend, see its [README](server/README.md)
-
-## Dev Technologies
-
-* [Babel](https://babeljs.io/): A es6/es7 compiler.
-* [Mocha](http://mochajs.org/): test framework.
-* [Karma](https://karma-runner.github.io): a productive testing environment to developers
-* [Nightwatch](http://nightwatchjs.org/): End-to-End tests in Node.js quickly and effortlessly that run against a Selenium server
-* [Sinon](http://sinonjs.org/): test spies, stubs and mocks.
-* [Eslint](http://eslint.org/): The pluggable linting utility for JavaScript and JSX.
-* [Travis](https://travis-ci.org/): Test and deploy. [![Build Status](https://travis-ci.org/FredericHeem/dumbnode.svg?branch=master)](https://travis-ci.org/FredericHeem/dumbnode)
-* [CodeClimate](https://codeclimate.com): Automated code review [![Code Climate](https://codeclimate.com/github/FredericHeem/dumbnode/badges/gpa.svg)](https://codeclimate.com/github/FredericHeem/dumbnode)
-[![Test Coverage](https://codeclimate.com/github/FredericHeem/dumbnode/badges/coverage.svg)](https://codeclimate.com/github/FredericHeem/dumbnode/coverage)
-* [Coveralls](https://coveralls.io): [![Coverage Status](https://coveralls.io/repos/FredericHeem/dumbnode/badge.svg?branch=master)](https://coveralls.io/r/FredericHeem/dumbnode?branch=master)
-* [DevLab](https://github.com/TechnologyAdvice/DevLab): Containerize your development workflow.
-* [Trevor](https://github.com/vdemedes/trevor): Your own Travis CI to run tests locally.
-
-# Workflow
-
-## Clone the source code
-
-To get the latest code, grab it by cloning the repository from GitHub:
-
-    $ git clone https://github.com/FredericHeem/dumbnode.git yourproject
-    $ cd yourproject
-
-## Yeoman generator
-
-Another way to bootstrap your application is to use the [Starhackit Yeoman generator](https://github.com/FredericHeem/generator-dumbnode).
-
-First install *yo* and *generator-dumbnode* globally:
-
-```bash
-npm install -g yo generator-dumbnode
+```
+terraform plan
+terraform apply
 ```
 
-Finally, initiate the generator and answer the questions about your project:
+### terraform-fargate-logstash:
+This module creates ECS fargate for logstash including task definiation, service, and an ECS cluster. Also, it makes a docker image and uploads it to ECR.
 
-```bash
-mkdir yourproject && cd $_
-yo dumbnode
+* variables.tf - change the following: vpc_id, account, public_subnets, private_subnets, ssl_cert_arn, and docker_path.
+* Check the credentials time limit left (> 30min). If “retry” message appears while uploading the image to ecr, it indicates credentials time out. Usually, the deploy takes ~15minutes.
+
+```
+terraform init
+```
+If it's the first time, this will ask if we want to use S3 as a remote state store. Select "yes".
+Because of dependency of the resources (for the resource not known till apply), we need to create a nlb first:
+```
+terraform plan -target=aws_lb.nlb
+terraform apply -target=aws_lb.nlb
 ```
 
-## Deployment
+Once the nlb is created, we can run the following:
+```
+terraform plan
+terraform apply
+```
 
-See [Ansible README.md](deploy/ansible/README.md)
+## Debug:
+* For some reasons, the ECR image uploading faces (due to timeout or else), we can run that specific resource:
+```
+terraform apply -replace="null_resource.push"
+terraform apply -replace="aws_ecs_task_definition.td"
+```
+Note that we need to update the task definition. The service will automatically pick up the new task definition.
 
-# License
-
-See [LICENSE](LICENSE)
-
-# Author
-
-Crafted with passion by [Frederic Heem](https://github.com/FredericHeem)
+* To test the logstash, we can send a message either via via nlb's dns or fqdn:
+```
+echo "terraform message at $(date) from khong's mac" | openssl s_client -connect ssl-nlb-terraform-f323762e1de715f5.elb.us-west-2.amazonaws.com:6514 -ign_eof
+```
+or
+```
+echo "terraform message at $(date) from khong's mac" | openssl s_client -connect sl.tripactions.com:6514 -ign_eof
+```
