@@ -34,6 +34,8 @@ terraform apply
 ```
 
 ### terraform-fargate-logstash:
+Now that the policies and roles, we can create our ECS fargate task and service.
+
 This module creates ECS fargate for logstash including task definiation, service, and an ECS cluster. Also, it makes a docker image and uploads it to ECR.
 
 * variables.tf - change the following: vpc_id, account, public_subnets, private_subnets, ssl_cert_arn, and docker_path.
