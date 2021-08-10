@@ -43,6 +43,7 @@ This module creates ECS fargate for logstash including task definiation, service
 terraform init
 ```
 If it's the first time, this will ask if we want to use S3 as a remote state store. Select "yes".
+
 Because of dependency of the resources (for the resource not known till apply), we need to create a nlb first:
 ```
 terraform plan -target=aws_lb.nlb
