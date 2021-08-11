@@ -4,6 +4,7 @@ Terraform for Syslog
 The following two repos are used to deploy logstash using ECS fargate.
 The logstash server will get forwarded logs from Cortex Data Lake and uploads to S3 bucket.
 
+
 ## Prerequisites:
 
 * Terraform should be installed on the local machine (version > 1.0).
@@ -58,6 +59,7 @@ terraform plan
 terraform apply
 ```
 
+
 ## Debug:
 * For some reasons, if the ECR image uploading fails (due to timeout or else), we can run that specific resource:
 ```
@@ -74,6 +76,7 @@ or
 ```
 echo "terraform message at $(date) from khong's mac" | openssl s_client -connect sl.tripactions.com:6514 -ign_eof
 ```
+
 
 ## Technical notes
 
