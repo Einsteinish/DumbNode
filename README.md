@@ -46,20 +46,20 @@ terraform init
 ```
 If it's the first time, this will ask if we want to use S3 as a remote state store. Select "yes".
 
-Because of dependency of the resources (for the resource not known till apply), we need to create a nlb first:
+Because the "count" value (to get private ips of nlb) depends on resource attributes that cannot be determined until apply, we need to create the nlb resource first:
 ```
 terraform plan -target=aws_lb.nlb
 terraform apply -target=aws_lb.nlb
 ```
 
-Once the nlb is created, we can run the following:
+Once the nlb is in place, we can create the rest of the resources:
 ```
 terraform plan
 terraform apply
 ```
 
 ## Debug:
-* For some reasons, the ECR image uploading faces (due to timeout or else), we can run that specific resource:
+* For some reasons, if the ECR image uploading fails (due to timeout or else), we can run that specific resource:
 ```
 terraform apply -replace="null_resource.push"
 terraform apply -replace="aws_ecs_task_definition.td"
