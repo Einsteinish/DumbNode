@@ -13,6 +13,7 @@ The logstash server will get forwarded logs from Cortex Data Lake and uploads to
 * S3 bucket to store terraform state should be created outside of terraform. For example "ta-terraform-states-377028479240"
 * Pre-existing VPC with private subnets.
 * Log group should be created outside of terraform because the terra does not have a permission to delete the log group.The name is “<app_name>-<container_name>”.
+* For Docker iamge with logstash configuration, clone a reoo, [https://git-codecommit.us-west-2.amazonaws.com/v1/repos/ta-docker-mod](https://git-codecommit.us-west-2.amazonaws.com/v1/repos/ta-docker-mod). The source files for Dockerfile and the logstash configure are located in ta-docker-mod/tripactions-logstash-cortex.
 
 
 ## How to use the templates
@@ -101,3 +102,8 @@ $ docker tag "$image_name" "$repository_url":"$tag"
 
 $ docker push "$repository_url":"$tag" 
 ```
+
+
+
+## Links
+* [Forward Logs from Cortex Data Lake to a Syslog Server](https://docs.paloaltonetworks.com/cortex/cortex-data-lake/cortex-data-lake-getting-started/get-started-with-log-forwarding-app/forward-logs-from-logging-service-to-syslog-server.html) - How to configure Cortex Data Lake to forward all logs or a subset of logs to a syslog receiver. It has information about the cidr range as well.
