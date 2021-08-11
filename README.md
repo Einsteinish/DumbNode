@@ -74,3 +74,30 @@ or
 ```
 echo "terraform message at $(date) from khong's mac" | openssl s_client -connect sl.tripactions.com:6514 -ign_eof
 ```
+
+## Technical notes
+
+### TLS
+```
+* Client (Cortex DL) —> NLB (sl.tripactions.com) TLS listener———> Target group (TCP listener, logstash) ---> S3
+```
+Since the backend target group listener is TCP, TLS offloading happens at NLB level and unencrypted traffic is forwarded to backends. Otherwise (if target group  were TLS), the traffic message would get encrypted into a coded message before being directed to target group which has TLS listeners.
+
+### NLB and security group
+Because we cannot attach a security group to NLB, a security group on the target group is used. For Ingress, only the traffic from the cidr_blk (165.1.213.17/32 - cortex log forwarder) and private ips of NLB (for health check) are allowed.
+
+### Docker image creationg and uploading to ECR
+The "terraform-fargate-logstash/push.sh" script is doing the job:
+```
+$ cd "$source_path" && docker build -t "$image_name"
+
+$ aws --region us-west-2 ecr get-login-password \                                         
+    | docker login \
+        --password-stdin \
+        --username AWS \
+        377028479240.dkr.ecr.us-west-2.amazonaws.com
+        
+$ docker tag "$image_name" "$repository_url":"$tag"
+
+$ docker push "$repository_url":"$tag" 
+```
