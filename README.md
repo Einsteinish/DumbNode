@@ -89,16 +89,13 @@ Since the backend target group listener is TCP, TLS offloading happens at NLB le
 ### NLB and security group
 Because we cannot attach a security group to NLB, a security group on the target group is used. For Ingress, only the traffic from the cidr_blk (165.1.213.17/32 - cortex log forwarder) and private ips of NLB (for health check) are allowed.
 
-### Docker image creationg and uploading to ECR
-The "terraform-fargate-logstash/push.sh" script is doing the job:
+### Docker image creating and uploading it to ECR
+The "terraform-fargate-logstash/push.sh" script is run via terraform's "null_resource" using "local-exec" provisioner.  The script is doing the following job:
 ```
 $ cd "$source_path" && docker build -t "$image_name"
 
 $ aws --region us-west-2 ecr get-login-password \                                         
-    | docker login \
-        --password-stdin \
-        --username AWS \
-        377028479240.dkr.ecr.us-west-2.amazonaws.com
+    | docker login --password-stdin --username AWS $account_arn
         
 $ docker tag "$image_name" "$repository_url":"$tag"
 
