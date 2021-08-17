@@ -95,6 +95,12 @@ or
 ```
 echo "terraform message at $(date) from khong's mac" | openssl s_client -connect sl.tripactions.com:6514 -ign_eof
 ```
+or
+we can use the help script (msg.sh)
+```
+./msg.sh nlb-dns type
+```
+where the type is either 1 (a simple message) or 2 (a sample cortexdl message)
 
 * Logs for tasks
 
