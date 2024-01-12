@@ -28,7 +28,7 @@
   },
   "dependencies": {
     "axios": "0.11.1",
-    "bootstrap": "3.3.6",
+    "bootstrap": "3.4.1",
     "checkit": "0.6.0",
     "classnames": "2.2.5",
     "debug": "2.2.0",
